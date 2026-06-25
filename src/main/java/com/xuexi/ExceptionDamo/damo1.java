@@ -9,6 +9,10 @@ public class damo1 {
     *                   throw:        写在方法内，结束方法，手动抛出异常对象给调用者，并结束下面代码
     *               try         捕捉异常
     *               catch       处理异常
+    *               finally     一定会被执行的代码，无论是否捕获到异常，除非虚拟机停止
+    *
+    *       执行顺序：   try -> catch -> finally
+    *
     *       格式：
     *           thy{
     *               可能出现异常的代码
@@ -27,6 +31,23 @@ public class damo1 {
     *               写继承关系：运行时异常继承RuntimeException, 编译时异常继承Exception
     *               空参构造
     *               带参构造
+    *
+    *
+    *       AutoCloseable接口：  (实现接口后，特定情况下可以自动释放资源)
+    *           JDK7：
+    *               thy(创建流对象1; 创建流对象2){
+    *                   可能出现异常的代码
+    *               }catch(异常类名  变量名){
+    *                   异常的处理代码
+    *               }
+    *           JDK9：
+    *               创建流对象1;
+    *               创建流对象2;
+    *               thy(流1; 流2){
+    *                    可能出现异常的代码
+    *               }catch(异常类名  变量名){
+    *                    异常的处理代码
+    *               }
     *
     * */
     public static void main(String[] args) {

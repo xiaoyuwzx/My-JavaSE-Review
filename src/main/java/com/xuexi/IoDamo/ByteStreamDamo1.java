@@ -6,6 +6,8 @@ public class ByteStreamDamo1 {
     public static void main(String[] args) throws IOException {
         /*
         *
+        *       字节流：拷贝任意类型的文件
+        *
         *       字节输出流的细节：
         *           创建字节输出流对象：
         *               参数是字符串表示的路径或者是File对象都可以
@@ -31,22 +33,52 @@ public class ByteStreamDamo1 {
         *               续写开关为 FileOutputStream 对象的第二个参数，将第二个参数设置为 True 就可以在不清空文件的情况下进行写入
         *               续写开关默认为 false
         *
+        *
+        *       =========================================================
+        *
+        *       字节输入流的细节：
+        *               创建对象：
+        *                       如果文件不存在就会报错
+        *               读取数据：
+        *                       一次读取一个字节，读取出来的是对应在ASCII表上对应的数字
+        *                       读到文件末尾会返回-1
+        *               释放资源：
+        *                       每次操作完成之后都要使用close()方法释放资源，否则java会一直占用对应的资源
+        *
+        *       读取数据的方法：
+        *               int read()              每次读取一个字节数据，读取到末尾时返回-1
+        *               int read(Byet[] byet)   每次读取多个数据，每次返回读取到字节的个数，读取到末尾时返回-1
+        *                       具体一次读取多少个字节数据，跟数组长度有关
+        *                       每次读取的长度最多不超过数组的长度
+        *
         * */
 
-        //1.创建对象
-        FileOutputStream file = new FileOutputStream(new File("src/main/java/com/xuexi/IoDamo/text.txt"));
+        //1.创建输出流对象
+        FileOutputStream fileOutput = new FileOutputStream(new File("src/main/java/com/xuexi/IoDamo/text.txt"));
         //2.写数据
-        file.write(97);
+        fileOutput.write(97);
         String str = "abcde";
-        file.write(str.getBytes());
+        fileOutput.write(str.getBytes());
 
         FileOutputStream fileOut = new FileOutputStream(new File("src/main/java/com/xuexi/IoDamo/text.txt"), true);
-        file.write("\r\n".getBytes());
+        fileOutput.write("\r\n".getBytes());
         String s = "abcde";
-        file.write(s.getBytes());
+        fileOutput.write(s.getBytes());
 
         //3.释放资源
-        file.close();
+        fileOutput.close();
+
+        System.out.println("================================");
+
+        //创建输入流对象
+        FileInputStream fileInput = new FileInputStream("src/main/java/com/xuexi/IoDamo/text.txt");
+        //读取数据
+        //System.out.println((char)fileInput.read());
+        byte[] b = new byte[2];
+        int len = fileInput.read(b);
+        System.out.println(new String(b, 0, len));
+        //释放资源
+        fileInput.close();
 
     }
 }
