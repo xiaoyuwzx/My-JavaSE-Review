@@ -38,6 +38,34 @@ public class ThreadMethod {
         *                   细节：
         *                       当线程执行了插入/插队方法之后，会插入到当前线程之前，此时会在插入线程执行完之后才执行当前线程
         *
+        *
+        *           同步代码块(锁)：
+        *               关键字synchronized:
+        *                   把需要操作共享数据的代码锁起来的话就使用synchronized(锁对象)包裹起来
+        *                   共享数据对象需要使用static关键字修饰，并且锁对象需要是唯一的(一般使用本文件的.class字节码文件)
+        *           同步方法：
+        *               将同步代码块提取成方法并在修饰符后面添加synchronized关键字，此时锁对象为this
+        *
+        *           lock锁：
+        *               Lock lock = new ReentrantLock();
+        *               lock()      获取锁
+        *               unlock()    释放锁
+        *               将同步代码块中的代码使用thy捕获起来，在thy前面使用lock()获取锁，在finally中使用unlock()释放锁
+        *
+        *
+        *           生产者和消费者：
+        *               常用方法：
+        *                   void wait()             当前线程等待，直到被其他线程唤醒
+        *                   void notify()           随机唤醒单个线程
+        *                   void notifyAll()        唤醒所有线程
+        *
+        *
+        *           阻塞队列：
+        *               ArrayBlockingQueue          底层是数组，有界
+        *               LinkedBlockingQueue         底层是链表，无界，底层的最大值为int的最大值
+        *               细节：
+        *                   生产者和消费者必须使用同一个阻塞队列
+        *
         * */
     }
 }
